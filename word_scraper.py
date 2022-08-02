@@ -6,13 +6,13 @@ from bs4 import BeautifulSoup
 
 class discourseWordScraper:
 
-    def __init__(self, basicLink, websitePage, specificTags=None):
+    def __init__(self, basicLink, websitePage, timeZone,specificClasses=None):
 
-        self.specificTags = specificTags
+        self.specificClasses = specificClasses
         self.basicLink = basicLink
         self.websitePage = websitePage
 
-        self.specificClasses = specificClasses
+        self.timeZone = timeZone
 
         self.bSoup = None
 
@@ -20,14 +20,14 @@ class discourseWordScraper:
         self.bSoup = BeautifulSoup(htmlData.strip(), 'html.parser')
         self.websitePage = websitePage
 
-    def getByTag(self):
+    def getByClass(self):
 
         tempData = list()
 
-        for tagTxt in self.specificTags:
-            tempData += self.bSoup.find_all(tagTxt)
+        for classTxt in self.specificClasses:
+            tempData += self.bSoup.find_all(class_=classTxt)
 
-        return ([x.text.split('[,.\s]') for x in tempData], self.specificTags)
+        return ([re.split('[,.\s/]', x.text) for x in tempData], self.specificClasses)
 
     def validateInput(self, tempData, typeCases, statsDict):
 
@@ -41,10 +41,10 @@ class discourseWordScraper:
                                any(blackTag in string for blackTag in blackList) is False and string != ""])
 
         finalInput.insert(0, statsDict["title"])
-        finalInput.insert(1, statsDict["date-scraped"] + "MDT")
+        finalInput.insert(1, statsDict["date-scraped"] + " MDT")
         finalInput.insert(2, (self.basicLink + self.websitePage))
-        finalInput.insert(3, statsDict["created"] + "MDT")
-        finalInput.insert(4, statsDict["last reply"] + "MDT")
+        finalInput.insert(3, statsDict["created"] + " MDT")
+        finalInput.insert(4, statsDict["last reply"] + " MDT")
 
         try:
             finalInput.insert(5, statsDict["replies"])
@@ -77,10 +77,9 @@ class discourseWordScraper:
 
     def saveCSV(self, finalInput):
 
-        with open('Data_Collected/data_collected.csv', 'r', encoding="utf-8") as dfr, open(
-                'Data_Collected/data_collected.csv', 'a+',
-                newline='',
-                encoding="utf-8") as dfw:
+        with open('Data_Collected/data_collected.csv', 'r', encoding="utf-8") as dfr, open('Data_Collected/data_collected.csv', 'a+', newline='',
+                                                                  encoding="utf-8") as dfw:
             writer = csv.writer(dfw, delimiter=',')
+            reader = csv.reader(dfr)
 
             writer.writerow(finalInput)

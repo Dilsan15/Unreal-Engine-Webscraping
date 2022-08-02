@@ -1,6 +1,5 @@
 import time
 from datetime import datetime
-
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -8,28 +7,31 @@ from selenium.webdriver.chrome.service import Service
 
 class formNavigator:
 
-    def __init__(self, basicLink, websitePage=""):
+    def __init__(self, basicLink, websitePage, driverPath, timeOut, broswerVis):
 
         self.basicLink = basicLink
         self.websitePage = websitePage
         self.currentLink = basicLink + websitePage
 
+        self.driverPath = driverPath
+        self.timeOut = timeOut
+
         self.linksStored = list()
 
         self.bSoup = None
 
-        selService = Service("C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe")
+        selService = Service(self.driverPath)
 
         option = webdriver.ChromeOptions()
         option.add_argument('--incognito')
-        #         chrome_options.add_argument("--headless")
+        if not(broswerVis): option.add_argument("--headless")
 
         self.driver = webdriver.Chrome(service=selService, options=option)
         self.driver.get(f'{self.currentLink}')
 
     def scrollPage(self, userRequest="down", numOfTimes="infinite"):
 
-        time.sleep(0.2)
+        time.sleep(self.timeOut)
         atBottom = None
         last_height = self.driver.execute_script("return document.body.scrollHeight")
 
@@ -42,7 +44,7 @@ class formNavigator:
                 elif userRequest == "down":
                     new_height = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-                time.sleep(0.2)
+                time.sleep(self.timeOut)
 
                 new_height = self.driver.execute_script("return document.body.scrollHeight")
 
@@ -58,7 +60,7 @@ class formNavigator:
 
             while count != int(numOfTimes):
                 self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                time.sleep(0.2)
+                time.sleep(self.timeOut)
                 new_height = self.driver.execute_script("return document.body.scrollHeight")
                 count += 1
 
@@ -74,8 +76,6 @@ class formNavigator:
         self.driver.refresh()
 
     def getPageHtml(self):
-
-        time.sleep(0.2)
 
         with open("Data_Collected/html_stored.txt", "r+", encoding='utf-8') as htmlPage:
             htmlPage.write(self.driver.page_source)
@@ -114,7 +114,8 @@ class formNavigator:
             metaDataDict = {'title': f'{self.bSoup.find("a", class_="fancy-title").text.strip()}',
                             'date-scraped': f"{now.strftime('%b %d, %Y %I:%M:%S %p')}",
                             'created': f'{self.bSoup.find("span", class_="relative-date").get("title")}',
-                            'last reply': '0', 'replies': '0', 'views': 'Unknown', 'users': '1', 'likes': 'Unknown',
+                            'last reply': 'No-Date', 'replies': '0', 'views': 'Unknown', 'users': '1',
+                            'likes': 'Unknown',
                             'links': 'Unknown'}
 
             return metaDataDict
@@ -134,6 +135,14 @@ class formNavigator:
                 continue
 
         self.linksStored = list(dict.fromkeys(self.linksStored))
+
+    def getNumOfLink(self):
+        return len(self.linksStored)
+
+    def removeLink(self, num):
+
+        for nu in range(0, num):
+            self.linksStored.pop()
 
     def setLink(self, userRequest):
 

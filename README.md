@@ -1,4 +1,4 @@
-<h1>Unreal-Engine-Webscraper<h1>
+<h2>Unreal-Engine-Webscraper<h2>
 
 <h2>Summary</h2>
 <p>Navigates a specific category of Unreal Engine forums, and retrieves text from all of the topics in that category. Uses BS4 and Selenium, among other libraries. Open source and free to use by anyone! </p>

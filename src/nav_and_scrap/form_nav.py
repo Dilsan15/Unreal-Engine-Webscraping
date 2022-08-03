@@ -12,16 +12,12 @@ class FormNavigator:
         self.basic_link = basic_link
         self.website_page = website_page
         self.current_link = basic_link + website_page
-
         self.driver_path = driver_path
         self.time_out = time_out
-
         self.link_stored = list()
-
         self.b_soup = None
 
         sel_service = Service(self.driver_path)
-
         option = webdriver.ChromeOptions()
         option.add_argument('--incognito')
 
@@ -32,6 +28,8 @@ class FormNavigator:
         self.driver.get(f'{self.current_link}')
 
     def scroll_page(self, user_request="down", num_of_times="infinite"):
+
+        # Scrolls page differently based on what type of page you are on
 
         time.sleep(self.time_out)
         at_bottom = None
@@ -47,7 +45,6 @@ class FormNavigator:
                     new_height = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
                 time.sleep(self.time_out)
-
                 new_height = self.driver.execute_script("return document.body.scrollHeight")
 
                 if last_height == new_height:
@@ -74,15 +71,16 @@ class FormNavigator:
 
         return at_bottom
 
-    def refresh_page(self):
-        self.driver.refresh()
-
     def get_page_html(self):
+
+        # Gets HTML of specific page user is on
 
         self.b_soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         return self.b_soup, self.basic_link, self.website_page
 
     def get_page_meta(self):
+
+        # Gets page meta data, and returns it in dict format
 
         time_now = datetime.now()
         self.b_soup = BeautifulSoup(self.driver.page_source, 'html.parser')
@@ -121,6 +119,8 @@ class FormNavigator:
 
     def get_link(self):
 
+        # gets all pages on link which will be needed for scraping
+
         for a_tag in self.b_soup.find_all("a"):
 
             try:
@@ -136,19 +136,30 @@ class FormNavigator:
         self.link_stored = list(dict.fromkeys(self.link_stored))
 
     def get_num_of_link(self):
+
+        # Returns number of links
+
         return len(self.link_stored)
 
     def remove_link(self, num):
+
+        # removes links if to many are received
 
         for nu in range(0, num):
             self.link_stored.pop()
 
     def set_link(self, user_request):
 
-        self.website_page = self.link_stored[0]
-        self.current_link = self.basic_link + self.website_page
-        self.driver.get(self.current_link)
+        # Sets page link, and removes it from Set
 
-        self.link_stored.pop(0)
+        try:
+            self.website_page = self.link_stored[0]
+            self.current_link = self.basic_link + self.website_page
+            self.driver.get(self.current_link)
 
-        return self.current_link, user_request
+            self.link_stored.pop(0)
+
+            return self.current_link, user_request
+
+        except IndexError:
+            print("out of links!")

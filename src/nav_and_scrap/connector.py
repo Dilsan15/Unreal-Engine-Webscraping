@@ -35,7 +35,7 @@ def run_connector():
     # While loop which grabs HTML data, gets the content needed out of it, and saves it to CSV file. Breaks when all
     # link stored are used.
 
-    while num_of_links_needed != num_of_form_scraped:
+    while num_of_links_needed > num_of_form_scraped:
 
         try:
             my_data = []
@@ -46,7 +46,6 @@ def run_connector():
 
             meta_data = f_nav.get_page_meta()
             num_of_scroll = 0
-            num_of_form_scraped = 0
 
             while True:
 
@@ -70,9 +69,9 @@ def run_connector():
                 if f_nav.scroll_page(num_of_times=1, user_request="down"):
                     w_scrape.save_csv(final_input=my_data)
                     num_of_form_scraped += 1
+                    print(num_of_form_scraped)
                     break
 
-                num_of_scroll += 1
 
         except AttributeError:
 

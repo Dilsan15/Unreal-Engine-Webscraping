@@ -17,8 +17,7 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 from nav_and_scrap import connector
 
 # Number of forms needed to be scraped
-num_of_links_needed = 5
-
+num_of_links_needed = 50
 # Number of forms already scraped and in CSV file
 num_of_form_scraped = 0
 
@@ -40,6 +39,7 @@ time_zone = "MDT"
 # Boolean which controls if the browser activities will be shown on screen on or not
 browser_visible = False
 
-if __name__ == "main":
+if __name__ == "__main__":
     # function to start the connector between formNav and WordScraper
+
     connector.run_connector()

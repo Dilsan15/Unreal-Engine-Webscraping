@@ -2,12 +2,13 @@
 
 Process:
 
-Connector  ----> FormNav ------> Discourse Word Scraper ------> CSV File
+Main ------> Connector  ----> FormNav ------> Discourse Word Scraper ------> CSV File
                                 (Looped)
 
-FormNav: Navigates pages, get links on pages, sets URL, Sends html data to wordscraper
+Main: sets variables which will be used in the execution of project, runs connector
 Connector: Controls FormNav and connects the word scraper and FormNav together
-Discourse Word Scraper: Gets HTML from form, parses it into indvidual words, and sends it to CSV File
+FormNav: Navigates pages, get links on pages, sets URL, Sends html data to wordscraper
+Discourse Word Scraper: Gets HTML from form, parses it into individual words, and sends it to CSV File
 CSV File: Includes page meta data (date posted, views, replies, etc) and individual words of multiple form pages
 
 """
@@ -38,3 +39,7 @@ time_zone = "MDT"
 
 # Boolean which controls if the browser activities will be shown on screen on or not
 browser_visible = False
+
+if __name__ == "main":
+    # function to start the connector between formNav and WordScraper
+    connector.run_connector()

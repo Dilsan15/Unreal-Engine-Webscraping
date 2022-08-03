@@ -1,11 +1,13 @@
 import time
 from datetime import datetime
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 
 class FormNavigator:
+    """Navigates forms, gets all the links, sets links and provides MetaData/HTML to wordScraper"""
 
     def __init__(self, basic_link, website_page, driver_path, time_out, broswer_vis):
 

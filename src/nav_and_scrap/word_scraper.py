@@ -1,9 +1,11 @@
 import csv
 import re
+
 from bs4 import BeautifulSoup
 
 
 class DiscourseWordScraper:
+    """Scrapes the HTML provided by the FormNav, and presents it in a CSV file along with Meta Data"""
 
     def __init__(self, basic_link, website_page, time_zone, specific_classes):
 
@@ -17,7 +19,7 @@ class DiscourseWordScraper:
 
     def set_var(self, html_data, website_page):
 
-        # Changes class self-variables
+        # Changes class self-variables, which will be used later
 
         self.b_Soup = BeautifulSoup(html_data.strip(), 'html.parser')
         self.website_page = website_page
@@ -35,7 +37,7 @@ class DiscourseWordScraper:
 
     def validate_input(self, temp_data, type_cases=None, stats_dict=None):
 
-        # Final formating for the input, to be converted into a one dimensional list, with all page words and data
+        # Final formatting for the input, to be converted into a one dimensional list, with all page words and data
 
         black_list = ["http", "img", "<p>"]  # <- NEEDS INPUT TO RUN
         regex = re.compile("[^a-zA-Z-/_']")

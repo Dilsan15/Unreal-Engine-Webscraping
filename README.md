@@ -28,7 +28,7 @@
 <h2>Versions</h2>
 
 <ul>
-  <li>Python: 3.10</li>
+  <li>Python: 3.10.5</li>
   <li>BS4: 4.11.1 </li>
   <li>Selenium: 4.3.0</li>
 <ul>

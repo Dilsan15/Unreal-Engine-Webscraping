@@ -2,7 +2,7 @@
 <p>Navigates a specific category of Unreal Engine forums, and retrieves text from all of the topics in that category. Uses BS4 and Selenium, among other libraries. Open source and free to use by anyone! </p>
 
 <h2>Purpose</h2>
-<p>Developed to help gather data for a ML internship project</p>
+<p>Developed to help gather data for a ML internship project done in summer of 2022</p>
 
 
 <h2>Processes</h2>

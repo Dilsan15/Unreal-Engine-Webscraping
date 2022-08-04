@@ -8,11 +8,11 @@
 <h2>Processes</h2>
 
 <ol>
-  <li>Starts in a category link provided by user</li>
+  <li>Starts in a category link provided by user. Scrolls down and starts collecting links for topics in that category.</li>
   <li>Sets URL to one of the links collected (in order)</li>
   <li>Gets all text and Metadata from the page it enters</li>
-  <li>Saves text data retrieved into a CSV file</li>
-  <li>Continues Process</li>
+  <li>Saves text data retrieved, a inserts it into a CSV file</li>
+  <li>Continues process</li>
 </ol>
 
 <h2>Files</h2>

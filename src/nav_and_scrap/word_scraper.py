@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 
 class DiscourseWordScraper:
-    """Scrapes the HTML provided by the FormNav, and presents it in a CSV file along with Meta Data"""
+    """Scrapes the HTML provided by the FormNav, and presents it in a CSV file along with Metadata"""
 
     def __init__(self, basic_link, website_page, time_zone, specific_classes):
 
@@ -44,9 +44,9 @@ class DiscourseWordScraper:
         final_input = list()
 
         for raw_sentence in temp_data:
-            raw_input = ([regex.sub('', string.lower()) for string in raw_sentence])
-            final_input.extend([string for string in raw_input if
-                                any(blackTag in string for blackTag in black_list) is False and string != ""])
+            raw_input = ([regex.sub('', raw_word.lower()) for raw_word in raw_sentence])
+            final_input.extend([word for word in raw_input if
+                                any(blackTag in word for blackTag in black_list) is False and word != ""])
 
         if stats_dict is not None and type_cases is not None:
             final_input.insert(0, stats_dict["title"])
@@ -88,7 +88,7 @@ class DiscourseWordScraper:
 
         # Saves final_input list to CSV
 
-        with open('data_Collected/form_data_collected.csv', 'r', encoding="utf-8"), open(
-                'data_Collected/form_data_collected.csv', 'a+', newline='', encoding="utf-8") as dfw:
+        with open('data_collected/form_data_collected.csv', 'r', encoding="utf-8"), open(
+                'data_collected/form_data_collected.csv', 'a+', newline='', encoding="utf-8") as dfw:
             writer = csv.writer(dfw, delimiter=',')
             writer.writerow(final_input)

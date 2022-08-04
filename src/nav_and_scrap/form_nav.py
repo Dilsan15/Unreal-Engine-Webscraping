@@ -82,7 +82,7 @@ class FormNavigator:
 
     def get_page_meta(self):
 
-        # Gets page meta data, and returns it in dict format
+        # Gets page metadata, and returns it in dict format
 
         time_now = datetime.now()
         self.b_soup = BeautifulSoup(self.driver.page_source, 'html.parser')
@@ -140,7 +140,6 @@ class FormNavigator:
     def get_num_of_link(self):
 
         # Returns number of links
-
         return len(self.link_stored)
 
     def remove_link(self, num):
@@ -158,7 +157,6 @@ class FormNavigator:
             self.website_page = self.link_stored[0]
             self.current_link = self.basic_link + self.website_page
             self.driver.get(self.current_link)
-
             self.link_stored.pop(0)
 
             return self.current_link, user_request

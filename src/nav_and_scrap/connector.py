@@ -54,8 +54,8 @@ def run_connector():
                 w_scrape.set_var(html_data=str(data[0]), website_page=data[2])
                 html = w_scrape.get_by_class()
 
-                new_data = [x for x in [i for i in
-                                        html[0]] if x not in old_data]
+                new_data = [sentence for sentence in [class_list for class_list in
+                                                      html[0]] if sentence not in old_data]
 
                 if num_of_scroll == 0:
                     my_data.extend(
@@ -64,14 +64,12 @@ def run_connector():
                 else:
                     my_data.extend(w_scrape.validate_input(temp_data=new_data))
 
-                oldData = new_data
+                old_data = new_data
 
                 if f_nav.scroll_page(num_of_times=1, user_request="down"):
                     w_scrape.save_csv(final_input=my_data)
                     num_of_form_scraped += 1
-                    print(num_of_form_scraped)
                     break
-
 
         except AttributeError:
 

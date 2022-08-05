@@ -32,7 +32,7 @@ basic_link = "https://forums.unrealengine.com"
 website_page = "/c/development-discussion/programming-scripting/148"
 
 # Path to the webdriver, saved as env
-driver_path = os.environ['DRIVER_PATH']
+driver_path = os.environ['DRIVER_PATH']  # Todo("CHANGE THIS TO UR PATH! so it looks like driver_path = 'YOUR STRING' ")
 
 # time out needed between events, based on Wi-Fi and PC performance
 time_out = 0.5

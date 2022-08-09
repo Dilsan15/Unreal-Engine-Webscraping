@@ -15,12 +15,10 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 
 # import connector and OS for env variables
 
-import os
-
 from nav_and_scrap import connector
 
 # Number of forms needed to be scraped
-num_of_links_needed = 50
+num_of_links_needed = 2
 
 # Number of forms already scraped and in CSV file
 num_of_form_scraped = 0
@@ -29,10 +27,10 @@ num_of_form_scraped = 0
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/development-discussion/programming-scripting/148"
+website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-content-creation-and-design/72"
 
 # Path to the webdriver, saved as env
-driver_path = os.environ['DRIVER_PATH']  # Todo("CHANGE THIS TO UR PATH! so it looks like driver_path = 'YOUR STRING' ")
+driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it looks like driver_path = 'YOUR STRING' ")
 
 # time out needed between events, based on Wi-Fi and PC performance
 time_out = 0.5

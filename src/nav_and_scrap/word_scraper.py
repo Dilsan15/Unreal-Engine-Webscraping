@@ -41,48 +41,53 @@ class DiscourseWordScraper:
 
         black_list = ["http", "img", "<p>"]  # <- NEEDS INPUT TO RUN
         regex = re.compile("[^a-zA-Z-/_']")
-        final_input = list()
+        text_input = list()
 
         for raw_sentence in temp_data:
             raw_input = ([regex.sub('', raw_word.lower()) for raw_word in raw_sentence])
-            final_input.extend([word for word in raw_input if
-                                any(blackTag in word for blackTag in black_list) is False and word != ""])
+            text_input.extend([word for word in raw_input if
+                               any(blackTag in word for blackTag in black_list) is False and word != ""])
+
+        meta_input = list()
 
         if stats_dict is not None and type_cases is not None:
-            final_input.insert(0, stats_dict["title"])
-            final_input.insert(1, stats_dict["date-scraped"] + " MDT")
-            final_input.insert(2, (self.basic_link + self.website_page))
-            final_input.insert(3, stats_dict["created"] + " MDT")
-            final_input.insert(4, stats_dict["last reply"] + " MDT")
+            meta_input.insert(0, stats_dict["title"])
+            meta_input.insert(1, stats_dict["date-scraped"] + " MDT")
+            meta_input.insert(2, (self.basic_link + self.website_page))
+            meta_input.insert(3, stats_dict["created"] + " MDT")
+            meta_input.insert(4, stats_dict["last reply"] + " MDT")
 
             try:
-                final_input.insert(5, stats_dict["replies"])
+                meta_input.insert(5, stats_dict["replies"])
             except KeyError:
-                final_input.insert(5, stats_dict["reply"])
+                meta_input.insert(5, stats_dict["reply"])
 
             try:
-                final_input.insert(6, stats_dict["views"])
+                meta_input.insert(6, stats_dict["views"])
             except KeyError:
-                final_input.insert(6, stats_dict["view"])
+                meta_input.insert(6, stats_dict["view"])
 
             try:
-                final_input.insert(7, stats_dict["users"])
+                meta_input.insert(7, stats_dict["users"])
             except KeyError:
-                final_input.insert(7, stats_dict["user"])
+                meta_input.insert(7, stats_dict["user"])
 
             try:
-                final_input.insert(8, stats_dict["likes"])
+                meta_input.insert(8, stats_dict["likes"])
             except KeyError:
-                final_input.insert(8, stats_dict["like"])
+                meta_input.insert(8, stats_dict["like"])
 
             try:
-                final_input.insert(9, stats_dict["links"])
+                meta_input.insert(9, stats_dict["links"])
             except KeyError:
-                final_input.insert(9, stats_dict["link"])
+                meta_input.insert(9, stats_dict["link"])
 
-            final_input.insert(10, type_cases)
+            meta_input.insert(10, type_cases)
 
-        return final_input
+        finalInput = meta_input.copy()
+        finalInput.append(text_input)
+
+        return finalInput
 
     def save_csv(self, final_input):
 

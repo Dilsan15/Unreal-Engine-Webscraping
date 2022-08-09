@@ -15,13 +15,10 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 
 # import connector and OS for env variables
 
-from nav_and_scrap import connector
+import connector
 
 # Number of forms needed to be scraped
 num_of_links_needed = 2
-
-# Number of forms already scraped and in CSV file
-num_of_form_scraped = 0
 
 # Form website link
 basic_link = "https://forums.unrealengine.com"
@@ -43,4 +40,5 @@ browser_visible = True
 
 if __name__ == "__main__":
     # function to start the connector between formNav and WordScraper
-    connector.run_connector()
+    connector.run_connector(num_of_links_needed, basic_link, website_page, driver_path, time_out, time_zone,
+                            browser_visible)

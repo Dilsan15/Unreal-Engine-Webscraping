@@ -1,26 +1,23 @@
-from src.main import *
-from src.nav_and_scrap import form_nav
-from src.nav_and_scrap import word_scraper
+from nav_and_scrape import *
 
 """Connector uses methods from both classes to accomplish task of scraping multiple forms autonmously"""
 
 
-def run_connector():
+def run_connector(num_of_links_needed, basic_link, website_page, driver_path, time_out, time_zone, browser_visible):
     # Initiate both classes, which will have variables changed later
 
-    global num_of_form_scraped
+    f_nav = FormNavigator(basic_link=basic_link,
+                          website_page=website_page, driver_path=driver_path, time_out=time_out,
+                          broswer_vis=browser_visible)
 
-    f_nav = form_nav.FormNavigator(basic_link=basic_link,
-                                   website_page=website_page, driver_path=driver_path, time_out=time_out,
-                                   broswer_vis=browser_visible)
-
-    w_scrape = word_scraper.DiscourseWordScraper(basic_link=basic_link, website_page=website_page,
-                                                 time_zone=time_zone,
-                                                 specific_classes=["cooked"])
+    w_scrape = DiscourseWordScraper(basic_link=basic_link, website_page=website_page,
+                                    time_zone=time_zone,
+                                    specific_classes=["cooked"])
 
     # Gets appropriate number of links from webpage
 
     num_of_link = f_nav.get_num_of_link()
+    num_of_form_scraped = 0
 
     while num_of_links_needed != num_of_link:
         f_nav.scroll_page(num_of_times="2")
@@ -45,7 +42,6 @@ def run_connector():
             f_nav.scroll_page(user_request="up")
 
             meta_data = f_nav.get_page_meta()
-            num_of_scroll = 0
 
             while True:
 
@@ -60,15 +56,12 @@ def run_connector():
                 my_data.extend(new_data)
 
                 if f_nav.scroll_page(num_of_times=1, user_request="down"):
-
                     w_scrape.save_csv(final_input=w_scrape.validate_input(temp_data=my_data, type_cases=html[1],
                                                                           stats_dict=meta_data))
                     num_of_form_scraped += 1
                     break
 
-
-        except AttributeError:
+        except AttributeError as a:
 
             # Epic not removing deleted form links off of their website Error handled
-
             print("website Error (Deleted Post, bad connection, invalid post, etc)")

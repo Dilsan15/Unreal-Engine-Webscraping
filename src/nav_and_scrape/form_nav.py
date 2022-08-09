@@ -58,6 +58,7 @@ class FormNavigator:
         else:
 
             count = 0
+            new_height = ""
 
             while count != int(num_of_times):
                 self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -67,9 +68,6 @@ class FormNavigator:
 
             if last_height == new_height:
                 at_bottom = True
-
-            else:
-                last_height = new_height
 
         return at_bottom
 

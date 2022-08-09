@@ -19,10 +19,13 @@ class DiscourseWordScraper:
 
     def set_var(self, html_data, website_page):
 
-        # Changes class self-variables, which will be used later
+        # Changes class self-variables, which will be used later. Also gets rid of certain tags on the page
 
         self.b_Soup = BeautifulSoup(html_data.strip(), 'html.parser')
         self.website_page = website_page
+
+        for tag in self.b_Soup(["blockquote", "img", "aside", "a"]):
+            tag.decompose()
 
     def get_by_class(self):
 
@@ -39,7 +42,7 @@ class DiscourseWordScraper:
 
         # Final formatting for the input, to be converted into a one dimensional list, with all page words and data
 
-        black_list = ["http", "img", "<p>"]  # <- NEEDS INPUT TO RUN
+        black_list = ["kb"]  # <- NEEDS INPUT TO RUN
         regex = re.compile("[^a-zA-Z-/_']")
         text_input = list()
 

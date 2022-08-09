@@ -161,3 +161,4 @@ class FormNavigator:
 
         except IndexError:
             print("out of links!")
+            exit()

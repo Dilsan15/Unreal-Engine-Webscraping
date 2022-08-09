@@ -32,7 +32,7 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
     # While loop which grabs HTML data, gets the content needed out of it, and saves it to CSV file. Breaks when all
     # link stored are used.
 
-    while num_of_links_needed > num_of_form_scraped:
+    while num_of_links_needed != num_of_form_scraped:
 
         try:
             my_data = []

@@ -15,16 +15,16 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 
 # import connector and OS for env variables
 
-import connector
+from connector import connector_logic
 
 # Number of forms needed to be scraped
-num_of_links_needed = 2
+num_of_links_needed = 50
 
 # Form website link
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-content-creation-and-design/72"
+website_page = "/c/development-discussion/world-creation/153"
 
 # Path to the webdriver, saved as env
 driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it looks like driver_path = 'YOUR STRING' ")
@@ -40,5 +40,5 @@ browser_visible = True
 
 if __name__ == "__main__":
     # function to start the connector between formNav and WordScraper
-    connector.run_connector(num_of_links_needed, basic_link, website_page, driver_path, time_out, time_zone,
-                            browser_visible)
+    connector_logic.run_connector(num_of_links_needed, basic_link, website_page, driver_path, time_out, time_zone,
+                                  browser_visible)

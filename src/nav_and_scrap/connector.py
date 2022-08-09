@@ -53,9 +53,6 @@ def run_connector():
 
                 w_scrape.set_var(html_data=str(data[0]), website_page=data[2])
                 html = w_scrape.get_by_class()
-
-                print(old_data)
-
                 new_data = [sentence for sentence in [class_list for class_list in
                                                       html[0]] if sentence not in old_data]
 
@@ -63,7 +60,6 @@ def run_connector():
                 my_data.extend(new_data)
 
                 if f_nav.scroll_page(num_of_times=1, user_request="down"):
-                    print("hello")
 
                     w_scrape.save_csv(final_input=w_scrape.validate_input(temp_data=my_data, type_cases=html[1],
                                                                           stats_dict=meta_data))

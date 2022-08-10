@@ -24,7 +24,7 @@ num_of_links_needed = 50
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/development-discussion/world-creation/153"
+website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-content-creation-and-design/72"
 
 # Path to the webdriver, saved as env
 driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it

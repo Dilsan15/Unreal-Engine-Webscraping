@@ -19,7 +19,7 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
     num_of_link = f_nav.get_num_of_link()
     num_of_form_scraped = 0
 
-    while num_of_links_needed != num_of_link:
+    while num_of_links_needed > num_of_link:
         f_nav.scroll_page(num_of_times="2")
         f_nav.get_page_html()
         f_nav.get_link()
@@ -43,8 +43,6 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
 
             meta_data = f_nav.get_page_meta()
 
-            if meta_data == "diffLang":
-                continue
 
             while True:
 
@@ -64,7 +62,7 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
                     num_of_form_scraped += 1
                     break
 
-        except AttributeError as a:
+        except AttributeError:
 
             # Epic not removing deleted form links off of their website Error handled
             print("website Error (Deleted Post, bad connection, invalid post, etc)")

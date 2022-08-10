@@ -35,7 +35,7 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
     while num_of_links_needed != num_of_form_scraped:
 
         try:
-            my_data = []
+            word_list = []
             old_data = []
 
             f_nav.set_link("/t/")
@@ -43,20 +43,23 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
 
             meta_data = f_nav.get_page_meta()
 
+            if meta_data == "diffLang":
+                continue
+
             while True:
 
                 data = f_nav.get_page_html()
 
                 w_scrape.set_var(html_data=str(data[0]), website_page=data[2])
-                html = w_scrape.get_by_class()
+                html_class = w_scrape.get_by_class()
                 new_data = [sentence for sentence in [class_list for class_list in
-                                                      html[0]] if sentence not in old_data]
+                                                      html_class[0]] if sentence not in old_data]
 
                 old_data.extend(new_data)
-                my_data.extend(new_data)
+                word_list.extend(new_data)
 
                 if f_nav.scroll_page(num_of_times=1, user_request="down"):
-                    w_scrape.save_csv(final_input=w_scrape.validate_input(temp_data=my_data, type_cases=html[1],
+                    w_scrape.save_csv(final_input=w_scrape.validate_input(temp_data=word_list, type_cases=html_class[1],
                                                                           stats_dict=meta_data))
                     num_of_form_scraped += 1
                     break

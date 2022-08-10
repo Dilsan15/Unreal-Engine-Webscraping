@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 
 from bs4 import BeautifulSoup
+from langdetect import detect
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -103,8 +104,13 @@ class FormNavigator:
 
             meta_data_dict["date-scraped"] = time_now.strftime(f'%b %d, %Y %I:%M:%S %p')
             meta_data_dict["title"] = self.b_soup.find("a", class_="fancy-title").text.strip()
+            if detect(meta_data_dict['title']) == "en":
+                return meta_data_dict
 
-            return meta_data_dict
+            else:
+                return "diffLang"
+
+
 
         except AttributeError:
 

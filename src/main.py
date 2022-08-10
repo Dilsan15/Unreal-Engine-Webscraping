@@ -27,7 +27,8 @@ basic_link = "https://forums.unrealengine.com"
 website_page = "/c/development-discussion/world-creation/153"
 
 # Path to the webdriver, saved as env
-driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it looks like driver_path = 'YOUR STRING' ")
+driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it
+# looks like driver_path = 'YOUR STRING' ")
 
 # time out needed between events, based on Wi-Fi and PC performance
 time_out = 0.5

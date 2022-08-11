@@ -41,7 +41,7 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
             word_list = []
             old_data = []
 
-            f_nav.set_link("/t/")
+            f_nav.set_link()
             f_nav.scroll_page(user_request="up")
 
             meta_data = f_nav.get_page_meta()

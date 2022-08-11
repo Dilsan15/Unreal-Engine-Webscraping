@@ -14,6 +14,7 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 """
 
 # import connector and OS for env variables
+import os
 
 from connector import connector_logic
 
@@ -24,10 +25,10 @@ num_of_links_needed = 700
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-projects/70"
+website_page = "/c/development-discussion/asset-creation/151"
 
 # Path to the webdriver, saved as env
-driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it
+driver_path = os.environ["DRIVER_PATH"]  # Todo("CHANGE THIS TO UR PATH! so it
 # looks like driver_path = 'YOUR STRING' ")
 
 # time out needed between events, based on Wi-Fi and PC performance

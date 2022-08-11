@@ -145,7 +145,7 @@ class FormNavigator:
         for nu in range(0, num):
             self.link_stored.pop()
 
-    def set_link(self, user_request):
+    def set_link(self):
         # Sets page link, and removes it from Set
 
         try:
@@ -154,7 +154,7 @@ class FormNavigator:
             self.driver.get(self.current_link)
             self.link_stored.pop(0)
 
-            return self.current_link, user_request
+
 
         except IndexError:
             print("out of links!")

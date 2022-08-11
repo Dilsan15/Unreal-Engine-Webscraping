@@ -96,7 +96,7 @@ class DiscourseWordScraper:
 
         # Saves final_input list to CSV
 
-        with open('../data_collected/form_data_collected.csv', 'r', encoding="utf-8"), open(
-                '../data_collected/form_data_collected.csv', 'a+', newline='', encoding="utf-8") as dfw:
+        with open('data_collected/form_data_collected.csv', 'r', encoding="utf-8"), open(
+                'data_collected/form_data_collected.csv', 'a+', newline='', encoding="utf-8") as dfw:
             writer = csv.writer(dfw, delimiter=',')
             writer.writerow(final_input)

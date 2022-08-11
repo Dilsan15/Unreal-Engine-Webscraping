@@ -25,17 +25,17 @@ num_of_links_needed = 70
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/development-discussion/asset-creation/151"
+website_page = "/c/development-discussion/audio/42"
 
 # Path to the webdriver, saved as env
 driver_path = os.environ["DRIVER_PATH"]  # Todo("CHANGE THIS TO UR PATH! so it
 # looks like driver_path = 'YOUR STRING' ")
 
 # time out needed between events, based on Wi-Fi and PC performance
-time_out = 0.5
+time_out = 1
 
 # Timezone which data is being recorded 
-time_zone = "PDT"
+time_zone = "MDT"
 
 # Boolean which controls if the browser activities will be shown on screen on or not
 browser_visible = True

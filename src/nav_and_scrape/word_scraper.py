@@ -14,7 +14,7 @@ class DiscourseWordScraper:
         self.specific_classes = specific_classes
         self.basic_link = basic_link
         self.website_page = website_page
-        self.time_zone = time_zone
+        self.time_zone = " " + time_zone
         self.b_Soup = None
 
     def set_var(self, html_data, website_page):
@@ -55,10 +55,10 @@ class DiscourseWordScraper:
 
         if stats_dict is not None and type_cases is not None:
             meta_input.insert(0, stats_dict["title"])
-            meta_input.insert(1, stats_dict["date-scraped"] + " MDT")
+            meta_input.insert(1, stats_dict["date-scraped"] + self.time_zone)
             meta_input.insert(2, (self.basic_link + self.website_page))
-            meta_input.insert(3, stats_dict["created"] + " MDT")
-            meta_input.insert(4, stats_dict["last reply"] + " MDT")
+            meta_input.insert(3, stats_dict["created"] + self.time_zone)
+            meta_input.insert(4, stats_dict["last reply"] + self.time_zone)
 
             try:
                 meta_input.insert(5, stats_dict["replies"])

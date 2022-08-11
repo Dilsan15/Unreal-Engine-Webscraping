@@ -19,7 +19,7 @@ import os
 from connector import connector_logic
 
 # Number of forms needed to be scraped
-num_of_links_needed = 700
+num_of_links_needed = 70
 
 # Form website link
 basic_link = "https://forums.unrealengine.com"
@@ -35,7 +35,7 @@ driver_path = os.environ["DRIVER_PATH"]  # Todo("CHANGE THIS TO UR PATH! so it
 time_out = 0.5
 
 # Timezone which data is being recorded 
-time_zone = "MDT"
+time_zone = "PDT"
 
 # Boolean which controls if the browser activities will be shown on screen on or not
 browser_visible = True

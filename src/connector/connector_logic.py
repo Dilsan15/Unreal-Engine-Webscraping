@@ -20,13 +20,16 @@ def run_connector(num_of_links_needed, basic_link, website_page, driver_path, ti
     num_of_form_scraped = 0
 
     while num_of_links_needed > num_of_link:
-        f_nav.scroll_page(num_of_times="2")
+
         f_nav.get_page_html()
         f_nav.get_link()
         num_of_link = f_nav.get_num_of_link()
 
         if num_of_links_needed < num_of_link:
             f_nav.remove_link(num_of_link - num_of_links_needed)
+            break
+
+        if f_nav.scroll_page(num_of_times="1"):
             break
 
     # While loop which grabs HTML data, gets the content needed out of it, and saves it to CSV file. Breaks when all

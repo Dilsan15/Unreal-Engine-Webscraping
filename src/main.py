@@ -18,13 +18,13 @@ CSV File: Includes page meta data (date posted, views, replies, etc) and individ
 from connector import connector_logic
 
 # Number of forms needed to be scraped
-num_of_links_needed = 50
+num_of_links_needed = 700
 
 # Form website link
 basic_link = "https://forums.unrealengine.com"
 
 # Link to a specific category
-website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-content-creation-and-design/72"
+website_page = "/c/legacy-tools-unreal-engine-3-udk/udk-projects/70"
 
 # Path to the webdriver, saved as env
 driver_path = "C:/Users/dilsh/Downloads/chromedriver_win32/chromedriver.exe"  # Todo("CHANGE THIS TO UR PATH! so it

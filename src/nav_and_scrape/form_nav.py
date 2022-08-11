@@ -55,6 +55,7 @@ class FormNavigator:
 
                 last_height = new_height
 
+
         else:
 
             count = 0

@@ -116,10 +116,9 @@ class FormNavigator:
                               'likes': 'Unknown',
                               'links': 'Unknown'}
 
-            return meta_data_dict
+        return meta_data_dict
 
     def get_link(self):
-
         # gets all pages on link which will be needed for scraping
 
         for a_tag in self.b_soup.find_all("a"):
@@ -137,19 +136,16 @@ class FormNavigator:
         self.link_stored = list(dict.fromkeys(self.link_stored))
 
     def get_num_of_link(self):
-
         # Returns number of links
         return len(self.link_stored)
 
     def remove_link(self, num):
-
         # removes links if to many are received
 
         for nu in range(0, num):
             self.link_stored.pop()
 
     def set_link(self, user_request):
-
         # Sets page link, and removes it from Set
 
         try:
